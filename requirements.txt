@@ -12,10 +12,12 @@ pydantic-settings==2.5.2
 
 # Database
 sqlalchemy[asyncio]==2.0.35
+# PostgreSQL (for production with full RAG vector search)
+asyncpg==0.30.0
+pgvector==0.3.6
+# SQLite fallback (for quick deploy without vector search)
 aiosqlite==0.20.0
-# asyncpg==0.29.0  # only needed with PostgreSQL; install separately for local dev
 alembic==1.13.3
-# pgvector==0.3.6  # only needed with PostgreSQL; install separately for local dev
 
 # AI / LLM
 openai==1.51.2

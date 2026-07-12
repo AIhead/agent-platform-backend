@@ -32,3 +32,4 @@ Thumbs.db
 
 # Docker
 pgdata/
+agent_platform.db

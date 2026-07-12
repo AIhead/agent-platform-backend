@@ -9,8 +9,8 @@ class Settings(BaseSettings):
     SECRET_KEY: str = "dev-secret-key-change-in-production"
     ACCESS_TOKEN_EXPIRE_MINUTES: int = 60 * 24 * 7  # 7 days
 
-    # Database (SQLite default for easy deploy; PG for local dev with pgvector)
-    DATABASE_URL: str = "sqlite+aiosqlite:///./agent_platform.db"
+    # Database: PG for full RAG; SQLite for quick deploy without vector search
+    DATABASE_URL: str = "postgresql+asyncpg://agent:agent123@localhost:5432/agent_platform"
 
     # DeepSeek
     DEEPSEEK_API_KEY: str = ""
