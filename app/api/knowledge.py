@@ -12,10 +12,11 @@ from app.services.rag_service import index_document
 
 router = APIRouter(prefix="/api/knowledge", tags=["knowledge"])
 
-ADMIN_PHONES = {"13800138000"}
+ADMIN_ACCOUNTS = {"13800138000", "admin"}
 
 async def require_admin(user: User = Depends(get_current_user)):
-    if user.phone not in ADMIN_PHONES:
+    identifier = user.account or user.phone
+    if identifier not in ADMIN_ACCOUNTS:
         raise HTTPException(status_code=403, detail="仅管理员可操作知识库")
     return user
 
