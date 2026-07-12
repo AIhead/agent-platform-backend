@@ -7,12 +7,7 @@ from sqlalchemy.orm import Mapped, mapped_column, relationship
 
 from app.core.database import Base
 
-# pgvector available only with PostgreSQL
-try:
-    from pgvector.sqlalchemy import Vector
-    EmbeddingColumn = Vector(512)
-except ImportError:
-    EmbeddingColumn = JSON
+from pgvector.sqlalchemy import Vector
 
 
 class KnowledgeDoc(Base):
@@ -36,7 +31,7 @@ class KnowledgeChunk(Base):
     id: Mapped[str] = mapped_column(String(36), primary_key=True, default=lambda: str(uuid.uuid4()))
     doc_id: Mapped[str] = mapped_column(String(36), ForeignKey("knowledge_docs.id"), nullable=False, index=True)
     content: Mapped[str] = mapped_column(Text, nullable=False)
-    embedding: Mapped[list[float]] = mapped_column(EmbeddingColumn, nullable=True)
+    embedding: Mapped[list[float]] = mapped_column(Vector(512), nullable=True)
     chunk_index: Mapped[int] = mapped_column(Integer, nullable=False)
 
     doc: Mapped["KnowledgeDoc"] = relationship(back_populates="chunks")

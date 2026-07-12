@@ -1,5 +1,5 @@
 # Agent Platform - Backend
-# FastAPI + PostgreSQL + DeepSeek
+# FastAPI + PostgreSQL + pgvector + DeepSeek
 
 # Core
 fastapi==0.115.0
@@ -10,14 +10,10 @@ python-multipart==0.0.12
 pydantic==2.9.2
 pydantic-settings==2.5.2
 
-# Database
+# Database (PostgreSQL + pgvector)
 sqlalchemy[asyncio]==2.0.35
-# PostgreSQL (for production with full RAG vector search)
 asyncpg==0.30.0
 pgvector==0.3.6
-# SQLite fallback (for quick deploy without vector search)
-aiosqlite==0.20.0
-alembic==1.13.3
 
 # AI / LLM
 openai==1.51.2
